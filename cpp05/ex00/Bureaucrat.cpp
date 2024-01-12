@@ -1,6 +1,5 @@
 
 #include "Bureaucrat.hpp"
-#include <stdexcept>
 
 // Default constructor
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
@@ -18,8 +17,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 
 // Copy assignment overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-  (void)rhs;
-  return *this;
+  _name = rhs.getName();
+  _grade = rhs.getGrade();
+  return (*this);
 }
 
 // Default destructor
