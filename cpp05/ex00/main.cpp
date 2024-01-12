@@ -3,12 +3,12 @@
 int main(void) {
   {
     // base test
-    std::cout << "test 1 <-" << std::endl; 
+    std::cout << CYN << "test 1 <- base test" << RESET << std::endl;
     try
     {
       Bureaucrat paul("paul", 62);
       std::cout << paul << std::endl;
-      paul.setGrade(69);
+      paul.setGrade(69);                                                    
       std::cout << paul << std::endl;
       Bureaucrat stef = paul;
       std::cout << stef << std::endl;
@@ -20,7 +20,7 @@ int main(void) {
     }
   }
   /*- - - - - - - - - - - - - - - - - - - - - - - - -*/
-  std::cout << "test 2 <-" << std::endl; 
+  std::cout << "test 2 <-" << std::endl;
   {
     //test with deap copy
     try
@@ -34,8 +34,19 @@ int main(void) {
     catch(const std::exception& e) {
       std::cout << e.what() << std::endl;
     }
-    
-
+  }
+  /*- - - - - - - - - - - - - - - - - - - - - - - - -*/
+  std::cout << "test 3 <- grade too High" << std::endl;
+  {
+    // gread
+    try
+    {
+      Bureaucrat paul("paul", 0);
+      paul.setGrade(24);
+    }
+    catch(const std::exception& e) {
+      std::cout << e.what() << std::endl;
+    }
   }
   return(42);
 }
