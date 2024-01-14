@@ -8,7 +8,7 @@ int main(void) {
     {
       Bureaucrat paul("paul", 62);
       std::cout << paul << std::endl;
-      paul.setGrade(69);                                                    
+      paul.setGrade(69);
       std::cout << paul << std::endl;
       Bureaucrat stef = paul;
       std::cout << stef << std::endl;
@@ -20,7 +20,7 @@ int main(void) {
     }
   }
   /*- - - - - - - - - - - - - - - - - - - - - - - - -*/
-  std::cout << "test 2 <-" << std::endl;
+  std::cout << CYN << "test 2 <-" << RESET << std::endl;
   {
     //test with deap copy
     try
