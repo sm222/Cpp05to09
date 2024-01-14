@@ -3,6 +3,8 @@
 
 // Default constructor
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
+  if (DEV)
+    std::cout << GIT << "[*]" << RESET << "Bureaucrat Default constructor" << std::endl;
   if (grade > 150)
     throw GradeTooLowException();
   if (grade < 1)
@@ -12,11 +14,15 @@ Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
 
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+  if (DEV)
+    std::cout << YEL << "[*]" << RESET << "Bureaucrat Copy constructor" << std::endl;
   *this = other;
 }
 
 // Copy assignment overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
+  if (DEV)
+    std::cout << ORG << "[*]" << RESET << "Bureaucrat Copy assignment overload" << std::endl;
   _name = rhs.getName();
   _grade = rhs.getGrade();
   return (*this);
@@ -24,6 +30,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
 
 // Default destructor
 Bureaucrat::~Bureaucrat(void) {
+  if (DEV)
+    std::cout << RED << "[*]" << RESET << "Bureaucrat Default destructor" << std::endl;
 }
 
 short Bureaucrat::getGrade(void) const {

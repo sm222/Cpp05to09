@@ -23,6 +23,8 @@
 #include <iostream>
 #include <stdexcept>
 
+# define DEV 0
+
 // Class declaration
 class Bureaucrat {
   public:
