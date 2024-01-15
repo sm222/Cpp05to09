@@ -20,11 +20,15 @@
 #  define GIT_B	"\001\e[38;5;94m\002"
 # endif
 
+class Form;
+
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
 
-# define DEV 0
-
+# ifndef DEV
+#  define DEV 1
+# endif
 // Class declaration
 class Bureaucrat {
   public:
@@ -37,6 +41,9 @@ class Bureaucrat {
     std::string getName(void) const;
     // Grade
     void  setGrade(int grade);
+    
+    void  singForm(Form &ptr);
+    
     class GradeTooHighException : public std::exception {
       public:
         const char *what(void) const throw();
@@ -49,7 +56,7 @@ class Bureaucrat {
 
     private:
       std::string const _name;
-      short       _grade;
+      short             _grade;
 };
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat &ptr);

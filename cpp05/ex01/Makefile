@@ -1,5 +1,5 @@
 #name
-NAME = ex00
+NAME = ex01
 
 CC = c++ -Wall -Werror -Wextra -std=c++98
 

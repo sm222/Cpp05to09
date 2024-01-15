@@ -23,7 +23,7 @@
 #include <iostream>
 #include <stdexcept>
 
-# define DEV 0
+# define DEV 1
 
 // Class declaration
 class Bureaucrat {
