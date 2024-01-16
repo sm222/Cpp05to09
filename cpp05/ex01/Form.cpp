@@ -7,23 +7,32 @@ Form::Form(std::string name, int toSing, int toRun)
     throw GradeTooLowException();
   if (toRun < 1 || toSing < 1)
     throw GradeTooHighException();
+  if (DEV2)
+    std::cout << GIT << "[*]" << RESET << "Form Default constructor" << std::endl;
   _toSing = toSing;
   _toRun = toRun;
 }
 
 // Copy constructor
-Form::Form(const Form &other) {
+Form::Form(const Form &other) : _name(other.getName()), 
+_sign(other.isSign()), _toRun(other.gradeToRun()),
+_toSing(other.gradeToSign()) {
+  if (DEV2)
+    std::cout << YEL << "[*]" << RESET << "Form Copy constructor" << std::endl;
   *this = other;
 }
 
 // Copy assignment overload
 Form &Form::operator=(const Form &rhs) {
-  return *this;
+  if (DEV2)
+    std::cout << ORG << "[*]" << RESET << "Form Copy assignment overload" << std::endl;
+  return (*this);
 }
 
 // Default destructor
 Form::~Form() {
-
+  if (DEV2)
+    std::cout << RED << "[*]" << RESET << "Form Default destructor" << std::endl;
 }
 
 std::string Form::getName(void) const {

@@ -8,6 +8,11 @@ class Bureaucrat;
 #include <stdexcept>
 #include "Bureaucrat.hpp"
 
+# if (DEV == 1)
+#  define DEV2 1
+# else
+#  define DEV2 0
+# endif
 
 // Class declaration
 class Form {

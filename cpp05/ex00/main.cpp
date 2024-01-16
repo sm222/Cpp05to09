@@ -83,5 +83,19 @@ int main(void) {
     }
       delete paul;
   }
+  std::cout << CYN << "[*]" << RESET <<  "test 6 <- creat form " << std::endl;
+  {
+    try
+    {
+      Bureaucrat paul("paul", 10);
+      std::cout << paul << std::endl;
+      Bureaucrat mic = Bureaucrat("Mic", 10);
+      std::cout << mic << std::endl;
+
+    }
+    catch(const std::exception& e) {
+      std::cout << e.what() << std::endl;
+    }
+  }
   return(42);
 }

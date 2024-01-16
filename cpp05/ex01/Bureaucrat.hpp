@@ -26,9 +26,8 @@ class Form;
 #include <stdexcept>
 #include "Form.hpp"
 
-# ifndef DEV
-#  define DEV 1
-# endif
+# define DEV 1
+
 // Class declaration
 class Bureaucrat {
   public:
