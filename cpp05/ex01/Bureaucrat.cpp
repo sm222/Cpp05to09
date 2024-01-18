@@ -50,6 +50,25 @@ void  Bureaucrat::setGrade(int grade) {
   _grade = grade;
 }
 
+const char *Bureaucrat::GradeTooHighException::what(void) const throw() {
+  return ("this grade is too High");
+}
+
+const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
+  return ("this grade is too Low");
+}
+
+
+void Bureaucrat::increment(void){
+  this->setGrade(this->getGrade() - 1);
+};
+
+void Bureaucrat::decrement(void){
+  this->setGrade(this->getGrade() + 1);
+};
+
+// print
+
 void  Bureaucrat::singForm(Form &ptr) {
   if (!ptr.isSign()) {
     try
@@ -60,18 +79,10 @@ void  Bureaucrat::singForm(Form &ptr) {
     {
       std::cout << this->getName() << " couldn’t sign " << ptr.getName() << " because " << e.what() << std::endl;
     }
-  }
-  else {
     std::cout << this->getName() << " signed " << ptr.getName() << std::endl;
   }
-}
-
-const char *Bureaucrat::GradeTooHighException::what(void) const throw() {
-  return ("this grade is too High");
-}
-
-const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
-  return ("this grade is too Low");
+  else
+    std::cout << ptr.getName() << " is all ready signed " << std::endl;
 }
 
 // print

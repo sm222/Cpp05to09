@@ -38,8 +38,9 @@ class Bureaucrat {
     //
     short       getGrade(void) const;
     std::string getName(void) const;
+    void        increment(void);
+    void        decrement(void);
     // Grade
-    void  setGrade(int grade);
     
     void  singForm(Form &ptr);
     
@@ -53,9 +54,10 @@ class Bureaucrat {
         const char *what(void) const throw();
     };
 
-    private:
-      std::string const _name;
-      short             _grade;
+  private:
+    std::string const _name;
+    short             _grade;
+    void  setGrade(int grade);
 };
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat &ptr);

@@ -1,15 +1,16 @@
 {
   "version": "0.2.0",
   "configurations": [
+  
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/antoine/Documents/42/cpp_piscine/Cpp05to09/cpp05/ex00",
-      "program": "/home/antoine/Documents/42/cpp_piscine/Cpp05to09/cpp05/ex00/build/Debug/outDebug",
+      "cwd": "/Users/anboisve/Documents/42_cursus/Cpp05to09/cpp05/ex00",
+      "program": "/Users/anboisve/Documents/42_cursus/Cpp05to09/cpp05/ex00/a.out",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

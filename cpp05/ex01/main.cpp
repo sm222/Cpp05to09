@@ -9,21 +9,24 @@ int main(void) {
     std::cout << ORG << ">[*]" << RESET << " Copy assignment overload" << std::endl;
     std::cout << RED << ">[*]" << RESET << " Default destructor" << std::endl;
   }
+  std::cout << CYN << "[*]" << RESET << "test 1 <- base test" << std::endl;
+  {
     try
     {
-      Form door("door", 5, 55);
-      std::cout << door << std::endl;
-      Form door2(door);
-      std::cout << door2 << std::endl;
-      Form door3 = Form("d3", 50, 50);
-      std::cout << door3 << std::endl;
+      Form icecream("free ice cream", 99, 55);
+      Bureaucrat paul("paul", 50);
+      std::cout << paul << std::endl;
+
+      std::cout << icecream << std::endl;
+      paul.singForm(icecream);
+      std::cout << icecream << std::endl;
+      paul.singForm(icecream);
     }
     catch(const std::exception& e)
     {
       std::cout << e.what() << std::endl;
     }
     
-  {
   }
   return(42);
 }

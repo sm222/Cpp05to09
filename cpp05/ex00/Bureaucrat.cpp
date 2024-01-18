@@ -58,6 +58,15 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
   return ("this grade is too Low");
 }
 
+
+void Bureaucrat::increment(void){
+  this->setGrade(this->getGrade() - 1);
+};
+
+void Bureaucrat::decrement(void){
+  this->setGrade(this->getGrade() + 1);
+};
+
 // print
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat &ptr) {

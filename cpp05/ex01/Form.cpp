@@ -26,6 +26,7 @@ _toSing(other.gradeToSign()) {
 Form &Form::operator=(const Form &rhs) {
   if (DEV2)
     std::cout << ORG << "[*]" << RESET << "Form Copy assignment overload" << std::endl;
+  (void)rhs;
   return (*this);
 }
 
@@ -78,7 +79,6 @@ std::ostream& operator<<(std::ostream& os, const Form &ptr) {
     s = "[X] ";
   else
     s = "[ ] ";
-  
   os << s << ptr.getName() << " : " << ptr.gradeToRun() << " need to run and " << ptr.gradeToSign() \
   << " to Sign it.";
   return (os);
