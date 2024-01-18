@@ -41,10 +41,10 @@ class Form {
   private:
     void        sign(void);
 
-    std::string const _name;
+    const std::string _name;
     bool              _sign;
-    short             _toRun;
-    short             _toSing;
+    const short       _toSing;
+    const short       _toRun;
 
 };
 

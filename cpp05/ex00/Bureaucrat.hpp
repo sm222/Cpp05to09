@@ -51,7 +51,7 @@ class Bureaucrat {
   private:
     void        setGrade(int grade);
     std::string const _name;
-    short       _grade;
+    short             _grade;
 };
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat &ptr);

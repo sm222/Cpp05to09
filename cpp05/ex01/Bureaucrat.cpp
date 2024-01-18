@@ -78,6 +78,7 @@ void  Bureaucrat::singForm(Form &ptr) {
     catch(const std::exception& e)
     {
       std::cout << this->getName() << " couldn’t sign " << ptr.getName() << " because " << e.what() << std::endl;
+      return ;
     }
     std::cout << this->getName() << " signed " << ptr.getName() << std::endl;
   }

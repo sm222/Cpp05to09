@@ -1,22 +1,17 @@
 #include "Form.hpp"
 
 // Default constructor
-Form::Form(std::string name, int toSing, int toRun) 
-: _name(name), _sign(false) {
+Form::Form(std::string name, int toSing, int toRun) : _name(name), _sign(false), _toSing(toSing), _toRun(toRun) {
+  if (DEV2)
+    std::cout << GIT << "[*]" << RESET << "Form Default constructor" << std::endl;
   if (toRun > 150 || toSing > 150)
     throw GradeTooLowException();
   if (toRun < 1 || toSing < 1)
     throw GradeTooHighException();
-  if (DEV2)
-    std::cout << GIT << "[*]" << RESET << "Form Default constructor" << std::endl;
-  _toSing = toSing;
-  _toRun = toRun;
 }
 
 // Copy constructor
-Form::Form(const Form &other) : _name(other.getName()), 
-_sign(other.isSign()), _toRun(other.gradeToRun()),
-_toSing(other.gradeToSign()) {
+Form::Form(const Form &other) : _name(other.getName()), _sign(other.isSign()), _toSing(other.gradeToSign()),  _toRun(other.gradeToRun()) {
   if (DEV2)
     std::cout << YEL << "[*]" << RESET << "Form Copy constructor" << std::endl;
   *this = other;
