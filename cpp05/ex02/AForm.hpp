@@ -1,6 +1,6 @@
 
-#ifndef FORM_HPP_
-#define FORM_HPP_
+#ifndef AFORM_HPP_
+#define AFORM_HPP_
 
 class Bureaucrat;
 
@@ -15,12 +15,12 @@ class Bureaucrat;
 # endif
 
 // Class declaration
-class Form {
+class AForm {
   public:
-    Form(std::string name, int toSing, int toRun);
-    Form(const Form &other);
-    Form &operator=(const Form &rhs);
-    ~Form(void);
+    AForm(std::string name, int toSing, int toRun);
+    AForm(const AForm &other);
+    AForm &operator=(const AForm &rhs);
+    virtual ~AForm(void) = 0;
   
   class GradeTooHighException : public std::exception {
     public:
@@ -48,6 +48,6 @@ class Form {
 
 };
 
-std::ostream& operator<<(std::ostream &os, const Form &ptr);
+std::ostream& operator<<(std::ostream &os, const AForm &ptr);
 
-#endif // FORM_HPP_
+#endif // AFORM_HPP_

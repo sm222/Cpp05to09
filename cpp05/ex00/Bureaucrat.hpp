@@ -27,6 +27,8 @@
 
 // Class declaration
 class Bureaucrat {
+  private:
+    Bureaucrat(void);
   public:
     Bureaucrat(std::string name, int grade);
     Bureaucrat(const Bureaucrat &other);
@@ -49,7 +51,7 @@ class Bureaucrat {
     };
 
   private:
-    void        setGrade(int grade);
+    void              setGrade(int grade);
     std::string const _name;
     short             _grade;
 };

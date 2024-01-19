@@ -1,6 +1,10 @@
 
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(void) : _name(""), _grade(0) {
+  std::cout << MAG << "[*]" << RESET << " void Bureaucrat" << std::endl;
+};
+
 // Default constructor
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
   if (DEV)

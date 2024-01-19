@@ -69,7 +69,7 @@ void Bureaucrat::decrement(void){
 
 // print
 
-void  Bureaucrat::singForm(Form &ptr) {
+void  Bureaucrat::singForm(AForm &ptr) {
   if (!ptr.isSign()) {
     try
     {

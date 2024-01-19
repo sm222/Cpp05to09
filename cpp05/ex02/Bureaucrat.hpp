@@ -20,11 +20,11 @@
 #  define GIT_B	"\001\e[38;5;94m\002"
 # endif
 
-class Form;
+class AForm;
 
 #include <iostream>
 #include <stdexcept>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 # define DEV 1
 
@@ -42,7 +42,7 @@ class Bureaucrat {
     void        decrement(void);
     // Grade
     
-    void  singForm(Form &ptr);
+    void  singForm(AForm &ptr);
     
     class GradeTooHighException : public std::exception {
       public:

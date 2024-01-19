@@ -1,11 +1,11 @@
 #name
-NAME = ex01
+NAME = ex02
 
 CC = c++ -Wall -Werror -Wextra -std=c++98
 
-SRCS = main.cpp\
+SRCS =	main.cpp\
 		Bureaucrat.cpp\
-		Form.cpp\
+		AForm.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 
