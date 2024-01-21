@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat(void) : _name(""), _grade(0) {
 // Default constructor
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
   if (DEV)
-    std::cout << GIT << "[*]" << RESET << "Bureaucrat Default constructor" << std::endl;
+    std::cout << GIT << "[*]" << RESET << " Bureaucrat Default constructor" << std::endl;
   if (grade > 150)
     throw GradeTooLowException();
   if (grade < 1)
@@ -19,14 +19,14 @@ Bureaucrat::Bureaucrat(std::string name, int grade): _name(name) {
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other.getName()), _grade(other.getGrade()) {
   if (DEV)
-    std::cout << YEL << "[*]" << RESET << "Bureaucrat Copy constructor" << std::endl;
+    std::cout << YEL << "[*]" << RESET << " Bureaucrat Copy constructor" << std::endl;
   *this = other;
 }
 
 // Copy assignment overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
   if (DEV)
-    std::cout << ORG << "[*]" << RESET << "Bureaucrat Copy assignment overload" << std::endl;
+    std::cout << ORG << "[*]" << RESET << " Bureaucrat Copy assignment overload" << std::endl;
   _grade = rhs.getGrade();
   return (*this);
 }
@@ -34,7 +34,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
 // Default destructor
 Bureaucrat::~Bureaucrat(void) {
   if (DEV)
-    std::cout << RED << "[*]" << RESET << "Bureaucrat Default destructor" << std::endl;
+    std::cout << RED << "[*]" << RESET << " Bureaucrat Default destructor" << std::endl;
 }
 
 short Bureaucrat::getGrade(void) const {
@@ -63,13 +63,24 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
 }
 
 
-void Bureaucrat::increment(void){
+void  Bureaucrat::increment(void){
   this->setGrade(this->getGrade() - 1);
 };
 
-void Bureaucrat::decrement(void){
+void  Bureaucrat::decrement(void){
   this->setGrade(this->getGrade() + 1);
 };
+
+void  Bureaucrat::executeForm(AForm const &form) {
+  try
+  {
+    form.execute(*this);
+  }
+  catch(const std::exception& e)
+  {
+    std::cout << e.what() << std::endl;
+  }
+}
 
 // print
 

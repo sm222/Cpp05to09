@@ -42,6 +42,7 @@ class Bureaucrat {
     std::string getName(void) const;
     void        increment(void);
     void        decrement(void);
+    void        executeForm(AForm const &form);
     // Grade
     
     void  singForm(AForm &ptr);

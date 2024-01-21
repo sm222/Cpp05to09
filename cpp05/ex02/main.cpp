@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 
 int main(void) {
@@ -12,6 +13,16 @@ int main(void) {
   // ********************************************************************* //
   std::cout << std::endl << std::endl;
   std::cout << CYN << "[*]" << RESET << "test 1 <- base test" << std::endl;
-  
+  ShrubberyCreationForm test("main");
+
+  std::cout << test << std::endl;
+  ShrubberyCreationForm test2(test);
+  std::cout << test2 << std::endl;
+  Bureaucrat a("a", 1);
+  a.singForm(test2);
+  std::cout << test2 << std::endl;
+  std::cout << test2.getTarget() << std::endl;
+  a.executeForm(test2);
+
   return(42);
 }
