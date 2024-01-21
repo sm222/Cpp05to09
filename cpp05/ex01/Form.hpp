@@ -16,6 +16,8 @@ class Bureaucrat;
 
 // Class declaration
 class Form {
+  private:
+    Form(void);
   public:
     Form(std::string name, int toSing, int toRun);
     Form(const Form &other);

@@ -30,6 +30,8 @@ class Form;
 
 // Class declaration
 class Bureaucrat {
+  private:
+    Bureaucrat(void);
   public:
     Bureaucrat(std::string name, int grade);
     Bureaucrat(const Bureaucrat &other);

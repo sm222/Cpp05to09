@@ -1,5 +1,9 @@
 #include "Form.hpp"
 
+Form::Form(void) : _name(""), _sign(false), _toSing(0), _toRun(0) {
+  std::cout << MAG << "[*]" << RESET << " void Form" << std::endl;
+}
+
 // Default constructor
 Form::Form(std::string name, int toSing, int toRun) : _name(name), _sign(false), _toSing(toSing), _toRun(toRun) {
   if (DEV2)
