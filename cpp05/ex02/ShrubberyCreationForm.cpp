@@ -2,7 +2,7 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm() {
   if (DEV3)
-    std::cout << MAG << "[*]" << RESET << " void AForm" << std::endl;
+    std::cout << MAG << "[*]" << RESET << " void ShrubberyCreationForm" << std::endl;
 }
 
 // Default constructor
@@ -36,9 +36,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 std::string ShrubberyCreationForm::getTarget(void) const {
   return(this->_target);
 }
-
-
-/// art form https://www.asciiart.eu/nature/other
 
 void  ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
   canRun(executor);
