@@ -24,7 +24,7 @@ class AForm {
     AForm &operator=(const AForm &rhs);
     virtual void execute(Bureaucrat const &executor) const = 0;
     virtual ~AForm(void) = 0;
-    bool    canRun(Bureaucrat const &executor) const;
+    void    canRun(Bureaucrat const &executor) const;
 
   class GradeTooHighException : public std::exception {
     public:
@@ -34,7 +34,7 @@ class AForm {
     public:
       const char *what(void) const throw();
   };
-  class FormNotSing : public std::exception {
+  class FormNotSign : public std::exception {
     public:
       const char *what(void) const throw();
   };

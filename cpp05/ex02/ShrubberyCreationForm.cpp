@@ -41,8 +41,7 @@ std::string ShrubberyCreationForm::getTarget(void) const {
 /// art form https://www.asciiart.eu/nature/other
 
 void  ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
-  if (!this->canRun(executor))
-    return ;
+  canRun(executor);
   std::string file =  this->getTarget() + "_shrubbery";
   std::ofstream outfile;
   outfile.open(file.c_str());

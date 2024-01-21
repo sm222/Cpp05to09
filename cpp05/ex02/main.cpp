@@ -19,10 +19,9 @@ int main(void) {
   ShrubberyCreationForm test2(test);
   std::cout << test2 << std::endl;
   Bureaucrat a("a", 1);
+  a.executeForm(test2);
   a.singForm(test2);
   std::cout << test2 << std::endl;
-  std::cout << test2.getTarget() << std::endl;
-  a.executeForm(test2);
 
   return(42);
 }

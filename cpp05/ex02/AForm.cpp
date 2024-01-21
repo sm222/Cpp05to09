@@ -59,27 +59,20 @@ const char *AForm::GradeTooLowException::what(void) const throw() {
   return ("Form grade too Low");
 }
 
-const char *AForm::FormNotSing::what(void) const throw() {
-  return ("Form is not sing");
+const char *AForm::FormNotSign::what(void) const throw() {
+  return ("Form is not sign");
 }
 
 void  AForm::sign(void) {
   _sign = true;
 }
 
-bool  AForm::canRun(Bureaucrat const &executor) const {
+void  AForm::canRun(Bureaucrat const &executor) const {
   if (executor.getGrade() > this->gradeToRun())
-  {
-    std::cout << "Bureaucrat " << executor.getName() <<" grade is too low to run " << this->getName() << std::endl;
-    return (false);
-  }
+    throw Bureaucrat::GradeTooLowException();
   else if (!this->isSign())
-  {
-    std::cout << this->getName() << " is not sing" << std::endl;
-    return (false);
-  }
+    throw FormNotSign();
   std::cout  << executor.getName() << " run " << this->getName() << std::endl;
-  return (true);
 }
 
 void  AForm::beSigned(Bureaucrat &ptr) {
