@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -13,5 +14,19 @@ int main(void) {
     std::cout << RED << ">[*]" << RESET << " Default destructor" << std::endl;
   }
   // ********************************************************************* //
+  {
+    try
+    {
+      Intern bob;
+      AForm *test = bob.makeForm("robotomy equest", "Bender");
+      delete test;
+    }
+    catch(const std::exception& e)
+    {
+      std::cout << e.what() << std::endl;
+    }
+    
+
+  }
   return(42);
 }
