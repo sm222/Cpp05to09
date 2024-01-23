@@ -55,11 +55,11 @@ void  Bureaucrat::setGrade(int grade) {
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw() {
-  return ("this grade is too High");
+  return ("Bureaucrat grade is too High");
 }
 
 const char *Bureaucrat::GradeTooLowException::what(void) const throw() {
-  return ("this grade is too Low");
+  return ("Bureaucrat grade is too Low");
 }
 
 

@@ -81,7 +81,7 @@ int main(void) {
       std::cout << std::endl << garden << std::endl << std::endl;
       gorge.singForm(garden);
       gorge.executeForm(garden);
-      std::cout << std::endl;
+      std::cout << std::endl << garden << std::endl << std::endl;
     }
     catch(const std::exception& e)
     {

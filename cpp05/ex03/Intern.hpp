@@ -27,9 +27,9 @@ class Intern {
     //
     AForm *makeForm(std::string type, std::string target);
     private:
-      const std::string _name[3];
+      std::string _name[3];
       typedef AForm *(*_Ft)(std::string);
-      const  _Ft list[3];
+      _Ft _ftList[3];
       
 };
 

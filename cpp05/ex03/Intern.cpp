@@ -10,16 +10,19 @@ static  AForm *makePardon(std::string target) {
 }
 
 static  AForm *makeShrubbry(std::string target) {
-  return (new PresidentialPardonForm(target));
+  return (new ShrubberyCreationForm(target));
 }
 
-const Intern::_Ft list[3] = {(&makeRobot), (&makePardon), (&makeShrubbry)};
-
-const std::string _name[3] = {"robotomy request", "presidentialPardon request", "ShrubberyCreation request"};
 
 
 // Default constructor
-Intern::Intern(void) : list(0) {
+Intern::Intern(void) {
+  _ftList[0] = &makeRobot;
+  _ftList[1] = &makePardon;
+  _ftList[2] = &makeShrubbry;
+  _name[0] = "robotomy request";
+  _name[1] = "presidentialPardon request";
+  _name[2] = "shrubberyCreation request";
   if (DEV4)
     std::cout << MAG << "[*]" << RESET << " void Intern" << std::endl;
 }
@@ -46,15 +49,14 @@ Intern::~Intern(void) {
 }
 
 const char *Intern::NotRealForm::what(void) const throw() {
-  return ("is not a real Form");
+  return ("invalid Form");
 }
 
 
 AForm *Intern::makeForm(std::string type, std::string target) {
-  for (size_t i = 0; i < 3; i++)
-  {
-    /* code */
+  for (size_t i = 0; i < 3; i++) {
+    if (type == _name[i])
+      return(_ftList[i](target));
   }
-  
   throw NotRealForm();
 }
