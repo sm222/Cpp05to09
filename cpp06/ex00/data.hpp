@@ -8,7 +8,7 @@
 # include <limits>
 
 template <typename T>
-int  lookValueLimit(long value, T type) {
+int  lookValueLimit(double value, T type) {
   (void)type;
   if (value > std::numeric_limits<T>::max() ||
       value < std::numeric_limits<T>::min())
