@@ -1,5 +1,6 @@
 
 #include "data.hpp"
+#include <cctype>
 #include <string>
 
 int  lookInput(int ac, char **av) {
@@ -43,19 +44,27 @@ void  cleanStr(std::string &str, size_t len) {
 
 void cleanStrBack(std::string &str) {
   cleanStr(str, 3);
-  if (str.front() == '0' && str.back() != '0')
-  {
-    std::cout << "yes" << std::endl;
+  if (str.front() == '0' && str.back() != '0') {
   }
   else {
-    std::cout << "no" << std::endl;
-    str.erase(0, 1);
-    str.erase(0, 1);
+    str.erase(0, 2);
   }
 }
 
-void  printData(std::string std) {
-  double value = std::atof(std.c_str());
+void  printData(std::string str) {
+  double value;
+
+  if (!std::isdigit(str.front()) && str.length() < 2)
+  {
+    std::cout  << str.front() << std::endl;
+    value = str.front();
+  }
+  else
+    value = std::atof(str.c_str());
+  if (str.length() > 1 && value == 0) {
+    std::cout << str << ": invalid" << std::endl;
+    return ;
+  }
   // char
   char c = static_cast<char>(value);
   std::cout << "char  : ";
@@ -64,7 +73,7 @@ void  printData(std::string std) {
   else if (!std::isprint(value))
     std::cout << "not printable";
   else
-    std::cout << c;
+    std::cout << "'" << c << "'";
   std::cout << std::endl;
   //
   int n = static_cast<int>(value);
@@ -80,13 +89,12 @@ void  printData(std::string std) {
   double f2 = std::modf(value, &f3);
   std::string A = std::to_string(f3);
   std::string B = std::to_string(f2);
-  std::cout << "A " << A << " B " << B << std::endl;
   cleanStr(A, 1);
   cleanStrBack(B);
-  if (A.back() == '.' && B.front() == '0') {
+  if (A.back() == '.')
     A.pop_back();
-  }
-  std::cout << "A " << A << " B " << B << std::endl;
+  if (std::strncmp(B.c_str(), "0.", 2) == 0)
+    B.erase(0, 2);
   std::cout << "float : ";
   if (lookValueLimit(value, f) && value != 0) {
     std::cout << "impossible";

@@ -4,6 +4,7 @@ NAME = ex01
 CC = c++ -Wall -Werror -Wextra -std=c++98
 
 SRCS =	main.cpp\
+		data.cpp
 
 
 OBJS = $(SRCS:.cpp=.o)
