@@ -1,7 +1,6 @@
 
-#include "data.hpp"
-#include <cctype>
-#include <string>
+#include "Data.hpp"
+
 
 int  lookInput(int ac, char **av) {
   if (ac > 2) {
@@ -36,21 +35,7 @@ int  noneValue(double value) {
   return (0);
 }
 
-void  cleanStr(std::string &str, size_t len) {
-  while (str.length() > len && str.back() == '0') {
-    str.pop_back();
-  }
-}
-
-void cleanStrBack(std::string &str) {
-  cleanStr(str, 3);
-  if (str.front() == '0' && str.back() != '0') {
-  }
-  else {
-    str.erase(0, 2);
-  }
-}
-
+/*
 void  printData(std::string str) {
   double value;
 
@@ -109,13 +94,26 @@ void  printData(std::string str) {
   //
   std::cout << "double: " << value << std::endl;
 }
+*/
+/*
+*/
 
 int  main(int ac, char **av) {
+  char  c;
+
   if (lookInput(ac, av))
     return (1);
   std::string input = av[1];
   if (limits(input))
     return (0);
-  printData(input);
+  if (input.length() == 1 && !std::isdigit(input.front()))
+  {
+    c = input.front();
+    Data  convert(c);
+    convert.printValue();
+  }
+  else if (input.back()) {
+
+  }
   return (0);
 }
