@@ -61,7 +61,6 @@ std::string  editF(float f) {
   return (str);
 }
 
-
 void  Data::printValue(void) {
   //char
   if (_err[e_char] == fit)
