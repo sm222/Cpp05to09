@@ -47,6 +47,12 @@ Data::Data(char c) {
   _d = static_cast<double>(c);
 }
 
+/*
+int isValid(std::string str) {
+
+}
+*/
+
 Data::Data(std::string other) {
   for (size_t i = 0; i < 4; i++) {
     setErr(fit, i);
@@ -56,7 +62,10 @@ Data::Data(std::string other) {
     std::cout << "moi " << other.c_str() << std::endl;
     try
     {
-      _f = std::stof(other.c_str());
+      _f = std::stof(other);
+      valueToChar(this, _f);
+      valueToInt(this, _f);
+      valueToDouble(this, _f);
     }
     catch(const std::exception& e)
     {
@@ -65,10 +74,25 @@ Data::Data(std::string other) {
       }
       return ;
     }
-    // char
-    valueToChar(this, _f);
-    valueToInt(this, _f);
   }
+  else if (other.length() < 11 || (other.length() < 12 && other.front() == '-')) {
+    try
+    {
+      _i = std::stoi(other);
+      valueToChar(this, _i);
+      valueTofloat(this, _i);
+      valueToDouble(this, _i);
+      return ;
+    }
+    catch(const std::exception& e)
+    {
+      std::cout << "bad\n";
+    }
+  }
+  _d = std::stod(other);
+  valueToChar(this, _d);
+  valueToInt(this, _d);
+  valueTofloat(this, _d);
 }
 
 Data::Data(const Data &other) {
@@ -118,7 +142,25 @@ std::string  editF(float f) {
   while (B.length() > 1)
     B.pop_back();
   std::string str = (A + "." + B);
-  //std::cout << str << std::endl;
+  return (str);
+}
+
+std::string  editD(double d) {
+  std::string value;
+  value = std::to_string(d);
+  double d3;
+  double d2 = std::modf(d, &d3);
+  std::string A = std::to_string(d3);
+  std::string B = std::to_string(d2);
+  cleanStr(A, 1);
+  cleanStrBack(B);
+  if (A.back() == '.')
+    A.pop_back();
+  if (std::strncmp(B.c_str(), "0.", 2) == 0)
+    B.erase(0, 2);
+  while (B.length() > 2)
+    B.pop_back();
+  std::string str = (A + "." + B);
   return (str);
 }
 
@@ -130,19 +172,26 @@ void  Data::printValue(void) {
   else if (_err[e_char] == noPrintable)
     std::cout << "char  : not printable" << std::endl;
   else if (_err[e_char] == impossible || _err[e_char] == tooBig)
-    std::cout << "char  : impossible" << std::endl;
+    std::cout << "char  : outrange" << std::endl;
   //int
   if (_err[e_int] == fit)
     std::cout << "int   : " << _i << std::endl;
   else if (_err[e_int] == tooBig)
     std::cout << "int   : impossible" << std::endl;
   else if (_err[e_int] == impossible)
-    std::cout << "int   : impossible" << std::endl;
+    std::cout << "int   : outrange" << std::endl;
   // float
     if (_err[e_float] == fit)
-    std::cout << "float : " << editF(_f) << 'f' << std::endl;
+    std::cout << "float : " << _f << 'f' << std::endl;
   else if (_err[e_float] == tooBig)
-    std::cout << "float : impossible" << std::endl;
+    std::cout << "float : outrange" << std::endl;
   else if (_err[e_float] == impossible)
     std::cout << "float : impossible" << std::endl;
+  // double
+  if (_err[e_double] == fit)
+    std::cout << "double: " << _d << std::endl;
+  else if (_err[e_double] == tooBig)
+    std::cout << "double: impossible" << std::endl;
+  else if (_err[e_double] == impossible)
+    std::cout << "double: impossible" << std::endl;
 }

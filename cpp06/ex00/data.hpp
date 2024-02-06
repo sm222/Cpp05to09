@@ -86,11 +86,21 @@ void  valueToInt(Data *c, T type) {
 
 template <typename T>
 void valueTofloat(Data *c, T type) {
-  if (lookValueLimit(type, c->getInt()))
-    c->setErr(tooBig, e_int);
+  std::cout << std::numeric_limits<float>::min() << "|||" << type << "|" << std::endl;
+  std::cout << '\'' << type << '\'' << std::endl;
+  //if (lookValueLimit(type, c->getFloat()))
+  if (type > std::numeric_limits<float>::max() ||
+      type < std::numeric_limits<float>::min())
+    c->setErr(fit, e_float);
   else
-    c->setErr(fit, e_int);
-  c->setInt(static_cast<float>(type));
+    c->setErr(fit, e_float);
+  c->setFloat(static_cast<float>(type));
+}
+
+template <typename T>
+void valueToDouble(Data *c, T type) {
+  c->setErr(fit, e_double);
+  c->setDouble(static_cast<double>(type));
 }
 
 #endif // DATA_HPP_
