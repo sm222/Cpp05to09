@@ -1,5 +1,6 @@
 #include "Data.hpp"
 
+// Get and Set
 char  Data::getChar(void) const {
   return (this->_c);
 }
@@ -15,6 +16,24 @@ int Data::getInt(void) const {
 void Data::setInt(int i) {
   this->_i = i;
 }
+
+float Data::getFloat(void) const {
+  return (this->_f);
+}
+
+void  Data::setFloat(float f) {
+  this->_f = f;
+}
+
+double  Data::getDouble(void) const {
+  return (this->_d);
+}
+
+void  Data::setDouble(double d) {
+  this->_d = d;
+}
+
+// -------------------------------------
 
 Data::Data(char c) {
   for (size_t i = 0; i < 4; i++) {
@@ -96,8 +115,10 @@ std::string  editF(float f) {
     A.pop_back();
   if (std::strncmp(B.c_str(), "0.", 2) == 0)
     B.erase(0, 2);
+  while (B.length() > 1)
+    B.pop_back();
   std::string str = (A + "." + B);
-  std::cout << str << std::endl;
+  //std::cout << str << std::endl;
   return (str);
 }
 
@@ -119,7 +140,7 @@ void  Data::printValue(void) {
     std::cout << "int   : impossible" << std::endl;
   // float
     if (_err[e_float] == fit)
-    std::cout << "float : " << editF(_f) << std::endl;
+    std::cout << "float : " << editF(_f) << 'f' << std::endl;
   else if (_err[e_float] == tooBig)
     std::cout << "float : impossible" << std::endl;
   else if (_err[e_float] == impossible)

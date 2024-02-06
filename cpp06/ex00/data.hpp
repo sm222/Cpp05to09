@@ -38,12 +38,20 @@ class Data {
     Data(std::string other);
     //Data(double d);
     Data(const Data &other);
-    //char
-    char getChar(void) const;
-    void setChar(char c);
-    //int
-    int  getInt(void) const ;
-    void setInt(int i);
+    /***************************/
+    // char
+    char    getChar(void) const;
+    void    setChar(char c);
+    // int
+    int     getInt(void) const ;
+    void    setInt(int i);
+    // float
+    float   getFloat(void) const;
+    void    setFloat(float f);
+    // double
+    double  getDouble(void) const;
+    void    setDouble(double d);
+    /***************************/
     Data &operator=(const Data &rhs);
     ~Data();
     void  setErr(short err, int i);
@@ -57,7 +65,7 @@ class Data {
 };
 
 template <typename T>
-int  valueToChar(Data *c, T type) {
+void  valueToChar(Data *c, T type) {
   if (lookValueLimit(type, c->getChar()))
     c->setErr(tooBig, e_char);
   else if (!std::isprint(type))
@@ -65,17 +73,24 @@ int  valueToChar(Data *c, T type) {
   else
     c->setErr(fit, e_char);
   c->setChar(static_cast<char>(type));
-  return (0);
 }
 
 template <typename T>
-int  valueToInt(Data *c, T type) {
+void  valueToInt(Data *c, T type) {
   if (lookValueLimit(type, c->getInt()))
     c->setErr(tooBig, e_int);
   else
     c->setErr(fit, e_int);
   c->setInt(static_cast<int>(type));
-  return (0);
+}
+
+template <typename T>
+void valueTofloat(Data *c, T type) {
+  if (lookValueLimit(type, c->getInt()))
+    c->setErr(tooBig, e_int);
+  else
+    c->setErr(fit, e_int);
+  c->setInt(static_cast<float>(type));
 }
 
 #endif // DATA_HPP_
