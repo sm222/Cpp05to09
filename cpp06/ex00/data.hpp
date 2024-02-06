@@ -35,9 +35,15 @@ class Data {
   public:
     Data(char c);
     //Data(int i);
-    //Data(float f);
+    Data(std::string other);
     //Data(double d);
     Data(const Data &other);
+    //char
+    char getChar(void) const;
+    void setChar(char c);
+    //int
+    int  getInt(void) const ;
+    void setInt(int i);
     Data &operator=(const Data &rhs);
     ~Data();
     void  setErr(short err, int i);
@@ -49,5 +55,27 @@ class Data {
     double  _d;
     short   _err[4];
 };
+
+template <typename T>
+int  valueToChar(Data *c, T type) {
+  if (lookValueLimit(type, c->getChar()))
+    c->setErr(tooBig, e_char);
+  else if (!std::isprint(type))
+    c->setErr(noPrintable, e_char);
+  else
+    c->setErr(fit, e_char);
+  c->setChar(static_cast<char>(type));
+  return (0);
+}
+
+template <typename T>
+int  valueToInt(Data *c, T type) {
+  if (lookValueLimit(type, c->getInt()))
+    c->setErr(tooBig, e_int);
+  else
+    c->setErr(fit, e_int);
+  c->setInt(static_cast<int>(type));
+  return (0);
+}
 
 #endif // DATA_HPP_

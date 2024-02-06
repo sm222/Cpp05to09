@@ -112,8 +112,9 @@ int  main(int ac, char **av) {
     Data  convert(c);
     convert.printValue();
   }
-  else if (input.back()) {
-
+  else {
+    Data  convert(input);
+    convert.printValue();
   }
   return (0);
 }
