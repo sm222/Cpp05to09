@@ -35,6 +35,16 @@ void  Data::setDouble(double d) {
 
 // -------------------------------------
 
+
+static int find_dot(std::string str) {
+  for (size_t i = 0; i < str.length(); i++)
+  {
+    if (str[i] == '.')
+      return (1);
+  }
+  return (0);
+}
+
 Data::Data(char c) {
   for (size_t i = 0; i < 4; i++) {
     setErr(fit, i);
@@ -69,24 +79,35 @@ Data::Data(std::string other) {
       return ;
     }
   }
-  else if (other.length() < 11 || (other.length() < 12 && other.front() == '-')) {
+  else if (find_dot(other)) {
+    try
+    {
+      _d = std::stod(other);
+      valueToChar(this, _d);
+      valueToInt(this, _d);
+      valueTofloat(this, _d);
+      return ;
+    }
+    catch(const std::exception& e) {
+      std::cout << "double out " << std::endl;
+    }
+    
+  }
+  else {
     try
     {
       _i = std::stoi(other);
       valueToChar(this, _i);
       valueTofloat(this, _i);
       valueToDouble(this, _i);
-      return ;
     }
     catch(const std::exception& e)
     {
-      std::cout << "bad\n";
+      std::cerr << e.what() << '\n';
     }
+    
   }
-  _d = std::stod(other);
-  valueToChar(this, _d);
-  valueToInt(this, _d);
-  valueTofloat(this, _d);
+  std::cout << "ici 2\n";
 }
 
 Data::Data(const Data &other) {
@@ -106,6 +127,7 @@ void  Data::setErr(short err, int i) {
 }
 
 void  Data::printValue(void) {
+  if (_print)
   //char                                                      //
   std::cout << _err[e_char] << std::endl;
   if (_err[e_char] == fit)

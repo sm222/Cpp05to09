@@ -62,6 +62,7 @@ class Data {
     float   _f;
     double  _d;
     short   _err[4];
+    bool    _print;
 };
 
 template <typename T>
@@ -86,9 +87,6 @@ void  valueToInt(Data *c, T type) {
 
 template <typename T>
 void valueTofloat(Data *c, T type) {
-  std::cout << std::numeric_limits<float>::min() << "|||" << type << "|" << std::endl;
-  std::cout << '\'' << type << '\'' << std::endl;
-  //if (lookValueLimit(type, c->getFloat()))
   if (type > std::numeric_limits<float>::max() ||
       type < std::numeric_limits<float>::min())
     c->setErr(fit, e_float);

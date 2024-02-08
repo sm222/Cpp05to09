@@ -44,11 +44,11 @@ int isValid(std::string str) {
   if (copy.front() == '-')
     copy.erase(0, 1);
   for (size_t i = 0; i < copy.length(); i++) {
+    if (copy[i] == '.' && !std::isdigit(copy[i + 1]))
+      return (-1);
     if (copy[i] == '.')
       dot++;
-    else if (copy[i] == '-')
-      return (-1);
-    else if (!std::isalnum(copy[i]))
+    else if (!std::isdigit(copy[i]))
       return (-1);
   }
   return (dot);
@@ -71,9 +71,15 @@ int  main(int ac, char **av) {
   }
   else {
     int dot = isValid(input);
-    
+  
     if (dot > 1 || dot < 0)
+    {
+      if (dot > 1)
+        std::cout << "to many dot" << std::endl;
+      else
+        std::cout << "invalid char" << std::endl;
       return (1);
+    }
     Data  convert(input);
     convert.printValue();
   }
