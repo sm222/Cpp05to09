@@ -35,6 +35,25 @@ int  noneValue(double value) {
   return (0);
 }
 
+int isValid(std::string str) {
+  std::string copy = str;
+  int dot = 0;
+
+  if (copy.back() == 'f')
+    copy.pop_back();
+  if (copy.front() == '-')
+    copy.erase(0, 1);
+  for (size_t i = 0; i < copy.length(); i++) {
+    if (copy[i] == '.')
+      dot++;
+    else if (copy[i] == '-')
+      return (-1);
+    else if (!std::isalnum(copy[i]))
+      return (-1);
+  }
+  return (dot);
+}
+
 
 int  main(int ac, char **av) {
   char  c;
@@ -51,6 +70,10 @@ int  main(int ac, char **av) {
     convert.printValue();
   }
   else {
+    int dot = isValid(input);
+    
+    if (dot > 1 || dot < 0)
+      return (1);
     Data  convert(input);
     convert.printValue();
   }
