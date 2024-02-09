@@ -21,7 +21,7 @@ Base *generate(void) {
   return (p);
 }
 
-void identify(Base* p) {
+void identify(Base *p) {
   if (dynamic_cast<A*>(p))
     std::cout << "pointer is A" << std::endl;
   if (dynamic_cast<B*>(p))
@@ -45,7 +45,7 @@ int main(void) {
   Base *p = generate();
 
   identify(p);
-  identify(p);
+  identify(*p);
 
   delete p;
 }
