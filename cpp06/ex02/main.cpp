@@ -14,30 +14,50 @@ Base *generate(void) {
     std::cout << "make B" << std::endl;
     p = new B;
   }
-  else {
+  else if (i == 2) {
     std::cout << "make C" << std::endl;
     p = new C;
   }
+  else
+    std::cout << "make NULL" << std::endl;
   return (p);
 }
 
 void identify(Base *p) {
   if (dynamic_cast<A*>(p))
     std::cout << "pointer is A" << std::endl;
-  if (dynamic_cast<B*>(p))
+  else if (dynamic_cast<B*>(p))
     std::cout << "pointer is B" << std::endl;
-  if (dynamic_cast<C*>(p))
+  else if (dynamic_cast<C*>(p))
     std::cout << "pointer is C" << std::endl;
+  else
+    std::cout << "garbage 1" << std::endl;
 }
 
 void identify(Base &p) {
-  if (dynamic_cast<A*>(&p))
+  try {
+    A &aRef = dynamic_cast<A&>(p);
     std::cout << "reference is A" << std::endl;
-  if (dynamic_cast<B*>(&p))
+    static_cast<void>(aRef);
+    return ;
+  }
+  catch(const std::exception& e) {}
+  try {
+    B &bRef = dynamic_cast<B&>(p);
+    static_cast<void>(bRef);
     std::cout << "reference is B" << std::endl;
-  if (dynamic_cast<C*>(&p))
+    return ;
+  }
+  catch(const std::exception& e) {}
+  try {
+    C &cRef = dynamic_cast<C&>(p);
+    static_cast<void>(cRef);
     std::cout << "reference is C" << std::endl;
+    return ;
+  }
+  catch(const std::exception& e) {}
 }
+
 
 
 int main(void) {
