@@ -33,6 +33,15 @@ void  Data::setDouble(double d) {
   this->_d = d;
 }
 
+bool  Data::getPrint(void) const {
+  return(this->_print);
+}
+
+
+void  Data::setPrint(bool flag) {
+  this->_print = flag;
+}
+
 // -------------------------------------
 
 
@@ -55,6 +64,7 @@ Data::Data(char c) {
   _i = static_cast<int>(c);
   _f = static_cast<float>(c);
   _d = static_cast<double>(c);
+  setPrint(true);
 }
 
 
@@ -62,52 +72,48 @@ Data::Data(std::string other) {
   for (size_t i = 0; i < 4; i++) {
     setErr(fit, i);
   }
-  if (other.back() == 'f')
+  setPrint(false);
+  if (other.back() == 'f' && find_dot(other))
   {
-    try
-    {
+    try {
       _f = std::stof(other);
       valueToChar(this, _f);
       valueToInt(this, _f);
       valueToDouble(this, _f);
+      setPrint(true);
     }
     catch(const std::exception& e)
     {
-      for (size_t i = 0; i < 4; i++) {
-        setErr(tooBig, i);
-      }
+      std::cout << "float out of range" << std::endl;
       return ;
     }
   }
   else if (find_dot(other)) {
-    try
-    {
+    try {
       _d = std::stod(other);
       valueToChar(this, _d);
       valueToInt(this, _d);
       valueTofloat(this, _d);
+      setPrint(true);
       return ;
     }
     catch(const std::exception& e) {
-      std::cout << "double out " << std::endl;
+      std::cout << "double out of range " << std::endl;
     }
     
   }
   else {
-    try
-    {
+    try {
       _i = std::stoi(other);
       valueToChar(this, _i);
       valueTofloat(this, _i);
       valueToDouble(this, _i);
+      setPrint(true);
     }
-    catch(const std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
+    catch(const std::exception& e) {
+      std::cout << "int out of range" << std::endl;
     }
-    
   }
-  std::cout << "ici 2\n";
 }
 
 Data::Data(const Data &other) {
@@ -127,9 +133,9 @@ void  Data::setErr(short err, int i) {
 }
 
 void  Data::printValue(void) {
-  if (_print)
+  if (!getPrint())
+    return ;
   //char                                                      //
-  std::cout << _err[e_char] << std::endl;
   if (_err[e_char] == fit)
     std::cout << "char  : " << "'" << _c << "'" << std::endl;
   else if (_err[e_char] == noPrintable)
@@ -139,26 +145,20 @@ void  Data::printValue(void) {
   //int                                                       //
   if (_err[e_int] == fit)
     std::cout << "int   : " << _i << std::endl;
-  else if (_err[e_int] == tooBig)
-    std::cout << "int   : impossible" << std::endl;
-  else if (_err[e_int] == impossible)
+  else if (_err[e_int] == tooBig || _err[e_int] == impossible)
     std::cout << "int   : outrange" << std::endl;
   // float                                                    //
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
   std::cout.precision(1);
     if (_err[e_float] == fit)
     std::cout << "float : " << _f << 'f' << std::endl;
-  else if (_err[e_float] == tooBig)
+  else if (_err[e_float] == impossible || _err[e_float] == tooBig)
     std::cout << "float : outrange" << std::endl;
-  else if (_err[e_float] == impossible)
-    std::cout << "float : impossible" << std::endl;
   // double                                                   //
   std::cout.precision(2);
   if (_err[e_double] == fit)
     std::cout << "double: " << _d << std::endl;
   else if (_err[e_double] == tooBig)
-    std::cout << "double: impossible" << std::endl;
-  else if (_err[e_double] == impossible)
     std::cout << "double: impossible" << std::endl;
     //|                                                        //
 }

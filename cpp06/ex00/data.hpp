@@ -55,6 +55,8 @@ class Data {
     Data &operator=(const Data &rhs);
     ~Data();
     void  setErr(short err, int i);
+    bool  getPrint(void) const;
+    void  setPrint(bool flag);
     void  printValue(void);
   private:
     char    _c;

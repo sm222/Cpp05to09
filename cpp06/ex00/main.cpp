@@ -29,12 +29,6 @@ int  limits(std::string str) {
   return (0);
 }
 
-int  noneValue(double value) {
-  if (std::isnan(value) || std::isinf(value))
-    return (1);
-  return (0);
-}
-
 int isValid(std::string str) {
   std::string copy = str;
   int dot = 0;
