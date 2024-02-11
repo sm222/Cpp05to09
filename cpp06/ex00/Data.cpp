@@ -141,19 +141,19 @@ void  Data::printValue(void) {
   else if (_err[e_char] == noPrintable)
     std::cout << "char  : not printable" << std::endl;
   else if (_err[e_char] == impossible || _err[e_char] == tooBig)
-    std::cout << "char  : outrange" << std::endl;
+    std::cout << "char  : out of range" << std::endl;
   //int                                                       //
   if (_err[e_int] == fit)
     std::cout << "int   : " << _i << std::endl;
   else if (_err[e_int] == tooBig || _err[e_int] == impossible)
-    std::cout << "int   : outrange" << std::endl;
+    std::cout << "int   : out of range" << std::endl;
   // float                                                    //
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
   std::cout.precision(1);
     if (_err[e_float] == fit)
     std::cout << "float : " << _f << 'f' << std::endl;
   else if (_err[e_float] == impossible || _err[e_float] == tooBig)
-    std::cout << "float : outrange" << std::endl;
+    std::cout << "float : out of range" << std::endl;
   // double                                                   //
   std::cout.precision(2);
   if (_err[e_double] == fit)
