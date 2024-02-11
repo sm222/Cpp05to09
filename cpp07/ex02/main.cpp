@@ -13,7 +13,6 @@ int main(void) {
     char_list2 = char_list;
     std::cout << "list 2" << char_list2[0] << std::endl;
     std::cout << '|' << char_list2.getArray() << '|' << std::endl;
-
     char_list[40] = 'M';
   }
   catch(const std::exception& e)

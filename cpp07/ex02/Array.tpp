@@ -1,12 +1,10 @@
 
-
 template <typename T>
 Array<T>::Array(void): _array(nullptr), _n(0) {
 }
 
 template <typename T>
-Array<T>::Array(const unsigned int n): _n(n) {
-  _array = new T[_n];
+Array<T>::Array(const unsigned int n): _array(new T[n]), _n(n) {
 }
 
 template <typename T>
@@ -21,10 +19,9 @@ Array<T>::~Array(void) {
 }
 
 template <typename T>
-Array<T>  Array<T>::operator=(const Array<T> &rhs) {
+Array<T>  &Array<T>::operator=(const Array<T> &rhs) {
   if (this == &rhs)
     return (*this);
-  std::cout << "> " <<  reinterpret_cast<uintptr_t>(_array) << std::endl;
   if (_array)
     delete[] _array;
   _array = new T[rhs._n];
