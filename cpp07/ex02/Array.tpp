@@ -1,6 +1,6 @@
 
 template <typename T>
-Array<T>::Array(void): _array(nullptr), _n(0) {
+Array<T>::Array(void): _array(NULL), _n(0) {
 }
 
 template <typename T>
@@ -8,7 +8,7 @@ Array<T>::Array(const unsigned int n): _array(new T[n]), _n(n) {
 }
 
 template <typename T>
-Array<T>::Array(const Array<T> &other) {
+Array<T>::Array(const Array<T> &other) : _array(NULL), _n(0) {
   *this = other;
 }
 
