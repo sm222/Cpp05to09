@@ -15,12 +15,13 @@ class Span {
     std::vector<int>  getVet(void) const;
     int               getLimit(void) const;
     //
-    int               longestSpan(void) const;
+    unsigned int      longestSpan(void) const;
+    unsigned int      shortestSpan(void) const;
   //
   private:
     Span(void);
     unsigned int      _limit;
-    std::vector<int> _vec;
+    std::vector<int>  _vec;
 };
 
 #endif // SPAN_HPP_

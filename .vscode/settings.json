@@ -69,7 +69,8 @@
     "stack": "cpp",
     "__memory": "cpp",
     "filesystem": "cpp",
-    "*.tpp": "cpp"
+    "*.tpp": "cpp",
+    "climits": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
