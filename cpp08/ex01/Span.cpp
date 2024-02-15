@@ -44,7 +44,7 @@ unsigned int Span::longestSpan(void) const {
     throw std::out_of_range("need at least 2 number");
   std::vector<int> sorted = getVet();
   std::sort(sorted.begin(), sorted.end());
-  return (*(sorted.end() - 1) - *(sorted.begin()));
+  return (std::abs(*(sorted.end() - 1) - *(sorted.begin())));
 }
 
 
