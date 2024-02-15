@@ -12,6 +12,10 @@ class Span {
     ~Span(void);
     //
     void addNumber(int nuber);
+    std::vector<int>  getVet(void) const;
+    int               getLimit(void) const;
+    //
+    int               longestSpan(void) const;
   //
   private:
     Span(void);
