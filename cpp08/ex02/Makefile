@@ -7,7 +7,6 @@ CC = c++ -Wall -Werror -Wextra -std=c++98
 SRCS =	main.cpp\
 
 
-
 OBJS = $(SRCS:.cpp=.o)
 
 
