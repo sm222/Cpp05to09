@@ -33,7 +33,7 @@ int main(void) {
   {
     MutantStack<int> B;
     //add
-    for (size_t i = 0; i < 10000; i++) {
+    for (size_t i = 0; i < 100; i++) {
       B.push(i);
     }
     MutantStack<int>::iterator it = B.begin();
@@ -42,8 +42,11 @@ int main(void) {
     }
     std::cout << *it << std::endl;
     MutantStack<int> C(B);
-    //MutantStack<int>::iterator it2 = C.end();
-    //std::cout << *it2 << std::endl;
+    MutantStack<int>::iterator it2 = C.end();
+    for (size_t i = 0; i < 40; i++) {
+      it2--;
+    }
+    std::cout << *it2 << std::endl;
   }
   return (0);
 }
