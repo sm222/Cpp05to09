@@ -1,3 +1,4 @@
+#pragma once
 
 #ifndef EASYFIND_HPP_
 # define EASYFIND_HPP_

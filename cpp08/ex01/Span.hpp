@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef SPAN_HPP_
 #define SPAN_HPP_
 
