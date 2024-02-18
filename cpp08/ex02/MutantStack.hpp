@@ -15,7 +15,7 @@ class MutantStack : public std::stack<T, Container> {
     MutantStack(const MutantStack<T, Container> &other) :
       MutantStack<T, Container>::stack(other){};
     MutantStack &operator=(const MutantStack<T, Container> &rhs) {
-      if (this != &rhs)
+      if (this != rhs)
         MutantStack<T, Container>::std::stack::operator=(rhs);
       return (*this);
     };
