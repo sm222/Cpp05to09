@@ -61,22 +61,3 @@ int Span::shortestSpan(void) const {
   }
   return (min);
 }
-
-/*
-using std::vector;
-int Span::shortestSpan() const {
-
-  vector<int> sorted = _vec;
-  std::sort(sorted.begin(), sorted.end());
-
-  int shortest_span = sorted[1] - sorted[0];
-  for (vector<int>::iterator it = sorted.begin(); it != sorted.end() - 1;
-       ++it) {
-    int span = *(it + 1) - *it;
-    if (span < shortest_span) {
-      shortest_span = span;
-    }
-  }
-  return shortest_span;
-}
-*/
