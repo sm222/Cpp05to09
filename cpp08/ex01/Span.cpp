@@ -39,7 +39,7 @@ void  Span::addNumber(int number) {
   _vec.push_back(number);
 }
 
-unsigned int Span::longestSpan(void) const {
+int Span::longestSpan(void) const {
   if (_vec.size() < 2)
     throw std::out_of_range("need at least 2 number");
   std::vector<int> sorted = getVet();
@@ -48,18 +48,35 @@ unsigned int Span::longestSpan(void) const {
 }
 
 
-unsigned int Span::shortestSpan(void) const {
+int Span::shortestSpan(void) const {
   if (_vec.size() < 2)
     throw std::out_of_range("need at least 2 number");
   int min = std::numeric_limits<int>::max();
-  for (size_t i = 0; i < _vec.size(); i++) {
-    if (min == 1)
-      return (min);
+  for (size_t i = 0; i < _vec.size() - 1; i++) {
     int tmp = std::abs(_vec[i] - _vec[i + 1]);
     if (tmp < min)
       min = tmp;
+    if (tmp == 0)
+      return (0);
   }
   return (min);
 }
 
+/*
+using std::vector;
+int Span::shortestSpan() const {
 
+  vector<int> sorted = _vec;
+  std::sort(sorted.begin(), sorted.end());
+
+  int shortest_span = sorted[1] - sorted[0];
+  for (vector<int>::iterator it = sorted.begin(); it != sorted.end() - 1;
+       ++it) {
+    int span = *(it + 1) - *it;
+    if (span < shortest_span) {
+      shortest_span = span;
+    }
+  }
+  return shortest_span;
+}
+*/
