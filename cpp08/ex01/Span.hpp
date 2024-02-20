@@ -19,6 +19,7 @@ class Span {
     //
     int      longestSpan(void) const;
     int      shortestSpan(void) const;
+    void     setList(int first);
   //
   private:
     Span(void);

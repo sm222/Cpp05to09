@@ -7,10 +7,7 @@ int main(void) {
     size_t N = 10000;
     Span A(N);
     int nb = (N / 2) * -1;
-    for (size_t i = 0; i < N; i++)
-    {
-      A.addNumber(nb++);
-    }
+    A.setList(nb);
     std::cout << "long  " << A.longestSpan() << std::endl;
     std::cout << "short " << A.shortestSpan() << std::endl;
   }
@@ -23,8 +20,7 @@ int main(void) {
     size_t N = 60;
     Span A(N);
     int nb = N;
-    for (size_t i = 0; i < N; i++)
-    {
+    for (size_t i = 0; i < N; i++) {
       A.addNumber(nb);
       nb *= 2;
     }

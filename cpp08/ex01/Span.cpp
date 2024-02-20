@@ -47,6 +47,12 @@ int Span::longestSpan(void) const {
   return (std::abs(*(sorted.end() - 1) - *(sorted.begin())));
 }
 
+void Span::setList(int first) {
+  int max = getLimit() - this->_vec.size();
+  for (int i = 0; i < max; i++) {
+    addNumber(first + i);
+  }
+}
 
 int Span::shortestSpan(void) const {
   if (_vec.size() < 2)
