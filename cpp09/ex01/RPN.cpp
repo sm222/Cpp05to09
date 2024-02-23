@@ -43,7 +43,6 @@ void  RPN::calculate(void) {
     throw std::length_error("bad args");
 }
 
-
 // Default constructor
 RPN::RPN(void) {}
 

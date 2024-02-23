@@ -14,12 +14,12 @@ using std::string;
 class RPN {
   public:
     RPN(string input);
-    RPN(const RPN &other);
-    RPN &operator=(const RPN &rhs);
     void  calculate(void);
     void  printTop(void);
     ~RPN(void);
   private:
+    RPN &operator=(const RPN &rhs);
+    RPN(const RPN &other);
     RPN(void);
     //
     string      _input;
