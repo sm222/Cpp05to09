@@ -17,6 +17,7 @@ class RPN {
     RPN(const RPN &other);
     RPN &operator=(const RPN &rhs);
     void  calculate(void);
+    void  printTop(void);
     ~RPN(void);
   private:
     RPN(void);

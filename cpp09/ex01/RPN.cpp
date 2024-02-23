@@ -1,4 +1,5 @@
 #include "RPN.hpp"
+#include <cstring>
 
 static void action(stack<int> &st, char ar) {
   if (st.size() < 2)
@@ -8,22 +9,24 @@ static void action(stack<int> &st, char ar) {
   st.pop();
   nb[0] = st.top();
   st.pop();
-  if (ar == '+')
+  switch (ar) {
+  case '+':
     st.push(nb[0] + nb[1]);
-  if (ar == '-')
+    break;
+  case '-':
     st.push(nb[0] - nb[1]);
-  if (ar == '*')
+    break;
+  case '*':
     st.push(nb[0] * nb[1]);
-  if (ar == '/')
-  {
-    if (nb[0] == 0 || nb[1] == 0) {
-      std::cout << nb[0] << " " << nb[1] << std::endl;
-      st.push(nb[0]);
-    }
+    break;
+  case '/':
+    if (nb[0] == 0 || nb[1] == 0)
+      throw std::range_error("can't devide by 0");
     else
       st.push(nb[0] / nb[1]);
+    break;
+  default: {};
   }
-  std::cout << st.top() << std::endl;
 }
 
 void  RPN::calculate(void) {
@@ -49,6 +52,12 @@ RPN::RPN(string input) : _input(input) {
     if (!std::isdigit(_input[i]) && !std::strchr("+-*/ ", _input[i]))
       throw std::invalid_argument("invalid char");
   }
+}
+
+void RPN::printTop(void) {
+  if (_args.size() != 1)
+    throw std::invalid_argument("stack is bad");
+  std::cout << _args.top() << std::endl;
 }
 
 // Copy constructor

@@ -14,6 +14,7 @@ int main(int ac, char **av) {
   try {
     RPN rpn(av[1]);
     rpn.calculate();
+    rpn.printTop();
   }
   catch(const std::exception& e) {
     std::cout << "Error" << std::endl << e.what() << std::endl;
