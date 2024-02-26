@@ -34,7 +34,7 @@ Array<T>  &Array<T>::operator=(const Array<T> &rhs) {
 
 template <typename T>
 T         &Array<T>::operator[](const unsigned int i) const {
-  if (i > this->_n)
+  if (i >= this->_n)
     throw std::out_of_range("i out of range");
   return (this->_array[i]);
 }
