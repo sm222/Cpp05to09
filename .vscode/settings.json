@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    "*.cpp": "cpp",
     "*.c": "c",
     "stdexcept": "cpp",
     "__bit_reference": "cpp",
@@ -71,7 +72,8 @@
     "filesystem": "cpp",
     "*.tpp": "cpp",
     "climits": "cpp",
-    "__cxx_version": "cpp"
+    "__cxx_version": "cpp",
+    "map": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
