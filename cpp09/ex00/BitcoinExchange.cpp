@@ -2,9 +2,15 @@
 #include "BitcoinExchange.hpp"
 
 bool DataValue::operator<(const DataValue &in) const {
-  if (this->day < in.day || this->month < in.month || this->year < in.year)
+  if (this->year < in.year)
     return (true);
-  return (false);
+  if (this->year > in.year)
+    return (false);
+  if (this->month < in.month)
+    return (true);
+  if (this->month > in.month)
+    return (false);
+  return (this->day < in.day);
 }
 
 bool DataValue::operator==(const DataValue &in) const {
@@ -12,6 +18,8 @@ bool DataValue::operator==(const DataValue &in) const {
     return (true);
   return (false);
 }
+
+
 
 void  BitcoinExchange::printMap(void) {
   for (map<DataValue, float>::iterator it = _data.begin(); it != _data.end(); it++) {
@@ -23,20 +31,18 @@ void  BitcoinExchange::printMap(void) {
   a.month = 8;
   a.year = 2021;
   map<DataValue, float>::iterator b = _data.lower_bound(a);
-  b--;
   std::cout << "ici " << b->first.day << " "  << b->first.month << " " << b->first.year << " " << b->second << std::endl;
 }
 
-/*
-bool  BitcoinExchange::findValue(DataValue &toFind, double *out) {
-  for (map<DataValue, float>::iterator it = _data.begin(); it != _data.end(); it++) {
-    if (it->first == toFind) {
-      *out = it->second
-      return (true);
-    }
+int  BitcoinExchange::findValue(string value) {
+  for (size_t i = 0; i < value.size(); i++)
+  {
+    if (!std::strchr("0123456789-|. ", value[i]))
+      return (-1);
   }
+  std::cout << "valid" << std::endl;
+  return (0);
 }
-*/
 
 void BitcoinExchange::AddMap(DataValue &key, float &value) {
   _data[key] = value;
