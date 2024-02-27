@@ -20,18 +20,23 @@ bool DataValue::operator==(const DataValue &in) const {
 }
 
 
+static string returnDateString(DataValue const &data) {
+  string tmp;
+  tmp += std::to_string(data.year) + "-";
+  if (data.month > 9)
+    tmp += std::to_string(data.month) + "-";
+  else
+    tmp += "0" + std::to_string(data.month) + "-";
+  if (data.day > 9)
+    tmp += std::to_string(data.day);
+  else
+    tmp += "0" + std::to_string(data.day);
+  return (tmp);
+}
 
-void  BitcoinExchange::printMap(void) {
-  for (map<DataValue, float>::iterator it = _data.begin(); it != _data.end(); it++) {
-    std::cout << "Y " << it->first.year << " M " << it->first.month << " D " << it->first.day;
-    std::cout << " = " << it->second << std::endl;
-  }
-  DataValue a;
-  a.day = 4;
-  a.month = 8;
-  a.year = 2021;
-  map<DataValue, float>::iterator b = _data.lower_bound(a);
-  std::cout << "ici " << b->first.day << " "  << b->first.month << " " << b->first.year << " " << b->second << std::endl;
+static  void findInMap(map<DataValue, float> &sta, DataValue &toFind, float m) {
+  map<DataValue, float>::iterator b = sta.lower_bound(toFind);
+  std::cout << returnDateString(b->first) << " => " << b->second * m << std::endl;
 }
 
 int  BitcoinExchange::findValue(string value) {
@@ -40,6 +45,11 @@ int  BitcoinExchange::findValue(string value) {
     if (!std::strchr("0123456789-|. ", value[i]))
       return (-1);
   }
+  DataValue a;
+  a.day = 3;
+  a.month = 1;
+  a.year = 2011;
+  findInMap(_data, a, 3);
   std::cout << "valid" << std::endl;
   return (0);
 }

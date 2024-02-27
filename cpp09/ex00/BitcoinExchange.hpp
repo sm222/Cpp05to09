@@ -29,7 +29,6 @@ class BitcoinExchange {
     BitcoinExchange &operator=(const BitcoinExchange &rhs);
     void    AddMap(DataValue &data, float &value);
     bool    fileToMap(void);
-    void    printMap(void);
     int     findValue(string value);
     ~BitcoinExchange(void);
   private:

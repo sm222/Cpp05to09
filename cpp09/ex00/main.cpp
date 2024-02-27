@@ -9,8 +9,8 @@ int main(int ac, char **av) {
     BitcoinExchange bitcoin(av[1]);
     if (bitcoin.fileToMap()) {
       std::cout << 'A' << std::endl;
-      bitcoin.printMap();
-      bitcoin.findValue("2011-01-03 | 3");
+      //bitcoin.printMap();
+      bitcoin.findValue("2011-01-03");
     }
     else
       std::cout << 'B' << std::endl;
