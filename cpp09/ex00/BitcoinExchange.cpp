@@ -42,6 +42,9 @@ static string returnDateString(DataValue const &data) {
 
 static  void findInMap(map<DataValue, float> &sta, DataValue &toFind, float m) {
   map<DataValue, float>::iterator b = sta.lower_bound(toFind);
+  if (b == sta.begin())
+    return ;
+  b--;
   std::cout << returnDateString(b->first) << " => " << b->second * m << std::endl;
 }
 
@@ -64,7 +67,7 @@ static int validStr(const string str) {
       return (0);
     }
   }
-  if (std::strncmp(" | ", str.c_str() + 9, 3) == 0)
+  if (std::strncmp(" | ", str.c_str() + 10, 3) != 0)
     return (0);
   return (1);
 }
