@@ -1,25 +1,17 @@
 {
   "version": "0.2.0",
   "configurations": [
-  
     {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "name": "(lldb) Launch",
+      "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "program": "/Users/anboisve/Documents/Cpp05to09/cpp09/ex00/btc",
+      "args": ["/Users/anboisve/Documents/Cpp05to09/cpp09/ex00/infile.txt"],
       "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
       "externalConsole": false,
-      "cwd": "/Users/anboisve/Documents/42_cursus/Cpp05to09/cpp05/ex00",
-      "program": "/Users/anboisve/Documents/42_cursus/Cpp05to09/cpp05/ex00/a.out",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
+      "MIMode": "lldb"
     }
   ]
 }

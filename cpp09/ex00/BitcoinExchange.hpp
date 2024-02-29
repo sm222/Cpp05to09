@@ -30,6 +30,8 @@ class BitcoinExchange {
     void    AddMap(DataValue &data, float &value);
     bool    fileToMap(void);
     int     findValue(string value);
+    void    printMap(void);
+    std::istream &readInFile(string &dest);
     ~BitcoinExchange(void);
   private:
     BitcoinExchange(void);
