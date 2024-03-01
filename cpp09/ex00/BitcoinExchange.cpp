@@ -41,14 +41,22 @@ static string returnDateString(DataValue const &data) {
 }
 
 static  void findInMap(map<DataValue, float> &sta, DataValue &toFind, float m) {
-  map<DataValue, float>::iterator b = sta.lower_bound(toFind);
-  if (b == sta.begin())
+  if (toFind.year < 2008) {
+    std::cout << "Error: bitcoin did't envent exist" << std::endl;
     return ;
-  b--;
-  std::cout << returnDateString(b->first) << " => " << b->second * m << std::endl;
+  }
+  map<DataValue, float>::iterator it = sta.lower_bound(toFind);
+  if (it != sta.begin())
+    --it;
+  std::cout << returnDateString(it->first) << " " << m << " => " << it->second * m << std::endl;
 }
 
 static int validStr(const string str) {
+  for (size_t i = 0; i < str.size(); i++) {
+    if (!std::strchr("0123456789-|. ", str[i])) {
+      return (0);
+    }
+  }
   if (str[4] != '-' || str[7] != '-') {
     return (0);
   for (size_t i = 0; i < 4; i++) {
@@ -69,16 +77,51 @@ static int validStr(const string str) {
   }
   if (std::strncmp(" | ", str.c_str() + 10, 3) != 0)
     return (0);
-  return (1);
+  size_t i = 14;
+  int dot = 0;
+  while (std::strchr("0123456789.", str[i]) && i < str.size()) {
+    if (str[i] == '.')
+      dot++;
+    if (dot > 1)
+      return (0);
+    i++;
+  }
+  if (i == str.size()) {
+    return (1);
+  }
+  return (0);
+}
+
+static bool isLeapYears(DataValue const &data) {
+  return (data.year % 4 == 0 && data.year % 100 != 0) || (data.year % 400 == 0);
+}
+
+static int  lookMonthDay(DataValue const &data) {
+  switch (data.month) {
+  case 1: case 3: case 5: case 7: case 8: case 10:  case 12:
+    return (31);
+  case 4: case 6: case 9: case 11:
+    return (30);
+  case 2:
+    return (isLeapYears(data) ? 29 : 28);
+  default:
+    return (0);
+  }
+  return (0);
+}
+
+static bool testDayAndMonth(DataValue const &data) {
+  int res = lookMonthDay(data);
+  if (res > 0 && data.day <= res) {
+    return (true);
+  }
+  else {
+    return (false);
+  }
+  return (false);
 }
 
 int  BitcoinExchange::findValue(string value) {
-  for (size_t i = 0; i < value.size(); i++) {
-    if (!std::strchr("0123456789-|. ", value[i])) {
-      std::cout << "Error: bad input => " << value << std::endl;
-      return (-1);
-    }
-  }
   DataValue          tab;
   std::istringstream sep(value);
   char               out;
@@ -88,15 +131,21 @@ int  BitcoinExchange::findValue(string value) {
     return (-1);
   }
   if ((sep >> tab.year >> out >> tab.month >> out >> tab.day)) {
+    if (!testDayAndMonth(tab)) {
+      std::cout << "Error: bad day format" << std::endl;
+      return (0);
+    }
     float f;
     try {
+      if (tab.day > 31 || tab.month > 12)
+        throw std::runtime_error("Error: bad date");
       flo = value.c_str() + 12;
       f = std::stof(flo);
       if (f > 1000)
-        throw std::runtime_error("");
+        throw std::runtime_error("Error: too large a number");
     }
     catch(const std::exception& e) {
-      std::cout << "Error: too large a number." << std::endl;
+      std::cout << e.what() << std::endl;
       return (0);
     }
     if (f < 0) {
@@ -104,11 +153,6 @@ int  BitcoinExchange::findValue(string value) {
       return (0);
     }
     findInMap(_data, tab, f);
-  }
-  else {
-    std::cout << "nuh uh " << value << std::endl;
-    std::cout << tab.year << " " << tab.month << " " << tab.day << std::endl;
-    return (false);
   }
   return (0);
 }
@@ -157,7 +201,7 @@ BitcoinExchange::BitcoinExchange(char *&file) {
   _inFile.open(file, std::ios::in);
   if (_inFile.fail())
     throw std::runtime_error("infile fail");
-  _dataBase.open("/Users/anboisve/Documents/Cpp05to09/cpp09/ex00/data.csv", std::ios::in);
+  _dataBase.open("data.csv", std::ios::in);
   if (_dataBase.fail()) {
     _inFile.close();
     throw std::runtime_error("data.csv fail");

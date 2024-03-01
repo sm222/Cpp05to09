@@ -9,7 +9,7 @@ int main(int ac, char **av) {
   try {
     BitcoinExchange bitcoin(av[1]);
     if (bitcoin.fileToMap()) {
-      bitcoin.printMap();
+      //bitcoin.printMap();
       bitcoin.readInFile(tmp);
       if (tmp != "date | value")
         throw std::runtime_error("bad header");
@@ -18,7 +18,7 @@ int main(int ac, char **av) {
       }
     }
     else
-      std::cout << 'B' << std::endl;
+      std::cout << "error to inport data.csv" << std::endl;
   }
   catch(const std::exception& e) {
     std::cout << e.what() << std::endl;
