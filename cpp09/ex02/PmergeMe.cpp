@@ -1,4 +1,18 @@
 #include "PmergeMe.hpp"
+#include <chrono>
+
+static double  getTimePassed(void) {
+    static std::chrono::high_resolution_clock::time_point T;
+    static bool init;
+    if (!init) {
+        T = std::chrono::high_resolution_clock::now();
+        init = true;
+        return 0;
+    }
+    init = false;
+    std::chrono::duration<double, std::milli> ms = std::chrono::high_resolution_clock::now() - T;
+    return ms.count();
+}
 
 // Default constructor
 PmergeMe::PmergeMe() {
@@ -29,13 +43,22 @@ void PmergeMe::print(T &list) {
 }
 
 void PmergeMe::startAlgo(void) {
+  double time = 0;
   print(_vec);
-  sort(_vec, 0, _vec.size() - 1, _vec.size() / 2);
+  //std::cout << std::endl;
+  getTimePassed();
+  sort(_vec, 0, _vec.size() - 1, 2);
+  time = getTimePassed();
+  std::cout << "vector speed = " << time << std::endl;
   print(_vec);
-  std::cout << "- - - - - - - - - -  - - -" << std::endl;
-  print(_deq);
-  sort(_deq, 0, _deq.size() - 1, _deq.size() / 2);
-  print(_deq);
+  //std::cout << "- - - - - - - - - -  - - -" << std::endl;
+  //print(_deq);
+  //std::cout << std::endl;
+ // getTimePassed();
+  //sort(_deq, 0, _deq.size() - 1, 5);
+  //time = getTimePassed();
+  //std::cout << "deque speed  = " << time << std::endl;
+  //print(_deq);
 }
 
 void  PmergeMe::addNumber(int nb) {

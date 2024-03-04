@@ -10,27 +10,32 @@ using std::vector;
 using std::deque;
 
 template <typename T>
-void insertionSort(T &list , int p, int q) {
-  for (int i = p; i < q; i++) {
-    int tmpval = list[i + 1];
+void insertionSort(T &list , int left, int right) {
+  for (int i = left; i < right; i++) {
+    int tmp = list[i + 1];
     int j = i + 1;
-    while (j > p && list[j - 1] > tmpval) {
+    while (j > left && list[j - 1] > tmp) {
       list[j] = list[j - 1];
       j--;
     }
-  list[j] = tmpval;
+  list[j] = tmp;
   }
+  T   tmp(list.begin() + left, list.begin() + right + 1);
+  for (size_t i = 0; i < tmp.size(); i++) {
+    std::cout << tmp[i] << ' ';
+  }
+  std::cout << std::endl;
 }
 
 template <typename T>
-void merge(T &list, int p, int q, int r) {
-  int n1 = q - p + 1;
-  int n2 = r - q;
-  T   LA(list.begin() + p, list.begin() + q + 1);
-  T   RA(list.begin() + q + 1, list.begin() + r + 1);
+void merge(T &list, int left, int midle, int right) {
+  int n1 = midle - left + 1;
+  int n2 = right - midle;
+  T   LA(list.begin() + left, list.begin() + midle + 1);
+  T   RA(list.begin() + midle + 1, list.begin() + right + 1);
   int RIDX = 0;
   int LIDX = 0;
-  for (int i = 0; i <  r - p + 1; i++) {
+  for (int i = left; i <= right; i++) {
     if (RIDX == n2) {
       list[i] = LA[LIDX];
       LIDX++;
@@ -51,18 +56,17 @@ void merge(T &list, int p, int q, int r) {
 }
 
 template <typename T>
-void  sort(T &list, int p, int r, int K) {
-  if (r - p  > K) {
-    int q = (p + r) / 2;
-    sort(list, p, q, K);
-    sort(list, q + 1, r, K);
-    merge(list, p, q, r);
+void  sort(T &list, int left, int right, int K) {
+  if (right - left > K) {
+    int middle = (left + right) / 2;
+    sort(list, left, middle, K);
+    sort(list, middle + 1, right, K);
+    merge(list, left, middle, right);
   }
   else {
-    insertionSort(list, p, r);
+    insertionSort(list, left, right);
   }
 }
-
 
 // Class declaration
 

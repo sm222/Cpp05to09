@@ -2,7 +2,7 @@
 #name
 NAME = PmergeMe
 
-CC = c++ -Wall -Werror -Wextra -std=c++98
+CC = c++ -Wall -Werror -Wextra -std=c++98 -O2
 
 SRCS =	main.cpp\
 				PmergeMe.cpp\

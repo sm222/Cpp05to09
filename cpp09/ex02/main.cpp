@@ -3,6 +3,8 @@
 
 //https://iq.opengenus.org/merge-insertion-sort/
 
+//./PmergeMe `ruby -e "puts (1..50).to_a.shuffle.join(' ')"`
+
 int main(int ac, char **av) {
   PmergeMe  algo;
 
