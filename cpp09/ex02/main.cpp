@@ -30,7 +30,6 @@ void merge(vector<int> &list, int p, int q, int r) {
       RIDX++;
     }
   }
-  
 }
 
 void  sort(vector<int> &list, int p, int r) {
@@ -38,6 +37,7 @@ void  sort(vector<int> &list, int p, int r) {
     int q = (p + r) / 2;
     sort(list, p, q);
     sort(list, q + 1, r);
+    merge(list, p, q, r);
   }
 }
 
