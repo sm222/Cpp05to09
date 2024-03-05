@@ -27,3 +27,8 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+run: all
+	./$(NAME) `jot -r 30 1 100000 | tr '\n' ' '`
+	@echo '- - - - -  - - - - - - - - - - - - - - - '
+	./$(NAME) `jot -r 3000 1 100000 | tr '\n' ' '`

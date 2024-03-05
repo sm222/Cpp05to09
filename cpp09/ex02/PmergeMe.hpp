@@ -15,7 +15,7 @@ enum typeContainer {
 };
 
 template <typename T>
-void insertionSort(T &list , int left, int right) {
+void insertionSort(T& list , int left, int right) {
   for (int i = left; i < right; i++) {
     int tmp = list[i + 1];
     int j = i + 1;
@@ -28,14 +28,15 @@ void insertionSort(T &list , int left, int right) {
 }
 
 template <typename T>
-void  makeCopy(T &src, T &dst, int beg, int end) {
+void  makeCopy(T& src, T &dst, int beg, int end) {
   for (int i = beg; i < end; i++) {
     dst.push_back(src[i]);
   }
 }
 
+
 template <typename T>
-void merge(T &list, int left, int midle, int right) {
+void merge(T& list, int left, int midle, int right) {
   int n1 = midle - left + 1;
   int n2 = right - midle;
   T   LA;
@@ -65,7 +66,7 @@ void merge(T &list, int left, int midle, int right) {
 }
 
 template <typename T>
-void  sort(T &list, int left, int right, int K) {
+void  sort(T& list, int left, int right, int K) {
   if (right - left > K) {
     int middle = (left + right) / 2;
     sort(list, left, middle, K);
@@ -81,10 +82,10 @@ void  sort(T &list, int left, int right, int K) {
 
 class PmergeMe {
   public:
-    PmergeMe();
-    PmergeMe(const PmergeMe &other);
-    PmergeMe &operator=(const PmergeMe &rhs);
-    ~PmergeMe();
+    PmergeMe(void);
+    PmergeMe(const PmergeMe&  other);
+    PmergeMe& operator=(const PmergeMe& rhs);
+    ~PmergeMe(void);
     void startAlgo(typeContainer type);
     void addNumber(int nb);
   private:

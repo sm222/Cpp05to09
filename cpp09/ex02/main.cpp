@@ -29,5 +29,7 @@ int main(int ac, char **av) {
     algo.addNumber(std::atoi(av[i]));
   }
   algo.startAlgo(e_vector);
+  //PmergeMe a(algo);
+  //a.startAlgo(e_deque);
   return (0);
 }

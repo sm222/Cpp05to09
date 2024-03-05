@@ -15,7 +15,7 @@ static double  getTimePassed(void) {
 }
 
 // Default constructor
-PmergeMe::PmergeMe() {
+PmergeMe::PmergeMe(void) {
 }
 
 // Copy constructor
@@ -26,12 +26,17 @@ PmergeMe::PmergeMe(const PmergeMe &other) {
 
 // Copy assignment overload
 PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
-  (void)rhs;
+  for (size_t i = 0; i < rhs._vec.size(); i++) {
+    _vec.push_back(rhs._vec[i]);
+  }
+  for (size_t i = 0; i < rhs._deq.size(); i++) {
+    _deq.push_back(rhs._deq[i]);
+  }
   return *this;
 }
 
 // Default destructor
-PmergeMe::~PmergeMe() {
+PmergeMe::~PmergeMe(void) {
 }
 
 template <typename T>

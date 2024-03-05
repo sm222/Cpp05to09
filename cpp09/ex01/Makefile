@@ -26,3 +26,8 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+run: all
+	./$(NAME) "5 5 +  9 +"
+	./$(NAME) "7 7 + 2 /"
+	./$(NAME) "1 1 1 1 1 1 + + + + +"
