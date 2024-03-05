@@ -9,6 +9,11 @@
 using std::vector;
 using std::deque;
 
+enum typeContainer {
+  e_vector,
+  e_deque,
+};
+
 template <typename T>
 void insertionSort(T &list , int left, int right) {
   for (int i = left; i < right; i++) {
@@ -20,22 +25,26 @@ void insertionSort(T &list , int left, int right) {
     }
   list[j] = tmp;
   }
-  T   tmp(list.begin() + left, list.begin() + right + 1);
-  for (size_t i = 0; i < tmp.size(); i++) {
-    std::cout << tmp[i] << ' ';
+}
+
+template <typename T>
+void  makeCopy(T &src, T &dst, int beg, int end) {
+  for (int i = beg; i < end; i++) {
+    dst.push_back(src[i]);
   }
-  std::cout << std::endl;
 }
 
 template <typename T>
 void merge(T &list, int left, int midle, int right) {
   int n1 = midle - left + 1;
   int n2 = right - midle;
-  T   LA(list.begin() + left, list.begin() + midle + 1);
-  T   RA(list.begin() + midle + 1, list.begin() + right + 1);
+  T   LA;
+  T   RA;
+  makeCopy(list, LA, left, midle + 1);
+  makeCopy(list, RA, midle + 1, right + 1);
   int RIDX = 0;
   int LIDX = 0;
-  for (int i = left; i <= right; i++) {
+  for (int i = left; i < right - left + 1 ; i++) {
     if (RIDX == n2) {
       list[i] = LA[LIDX];
       LIDX++;
@@ -76,7 +85,7 @@ class PmergeMe {
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &rhs);
     ~PmergeMe();
-    void startAlgo(void);
+    void startAlgo(typeContainer type);
     void addNumber(int nb);
   private:
     template <typename T>

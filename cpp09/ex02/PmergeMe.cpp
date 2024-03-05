@@ -3,7 +3,7 @@
 
 static double  getTimePassed(void) {
     static std::chrono::high_resolution_clock::time_point T;
-    static bool init;
+    static bool init = false;
     if (!init) {
         T = std::chrono::high_resolution_clock::now();
         init = true;
@@ -42,23 +42,25 @@ void PmergeMe::print(T &list) {
   std::cout << std::endl;
 }
 
-void PmergeMe::startAlgo(void) {
-  double time = 0;
-  print(_vec);
-  //std::cout << std::endl;
+void PmergeMe::startAlgo(typeContainer type) {
+  double time1 = 0;
+  double time2 = 0;
+  if (type == e_vector)
+    print(_vec);
   getTimePassed();
-  sort(_vec, 0, _vec.size() - 1, 2);
-  time = getTimePassed();
-  std::cout << "vector speed = " << time << std::endl;
-  print(_vec);
-  //std::cout << "- - - - - - - - - -  - - -" << std::endl;
-  //print(_deq);
-  //std::cout << std::endl;
- // getTimePassed();
-  //sort(_deq, 0, _deq.size() - 1, 5);
-  //time = getTimePassed();
-  //std::cout << "deque speed  = " << time << std::endl;
-  //print(_deq);
+  sort(_vec, 0, _vec.size() - 1, _vec.size() / 2);
+  time1 = getTimePassed();
+  if (type == e_vector)
+    print(_vec);
+  if (type == e_deque)
+    print(_deq);
+  getTimePassed();
+  sort(_deq, 0, _deq.size() - 1, 5);
+  time2 = getTimePassed();
+  if (type == e_deque)
+    print(_deq);
+  std::cout << "vector speed = " << time1 << std::endl;
+  std::cout << "deque speed  = " << time2 << std::endl;
 }
 
 void  PmergeMe::addNumber(int nb) {
